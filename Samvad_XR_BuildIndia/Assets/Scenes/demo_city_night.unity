@@ -2217,10 +2217,10 @@ MonoBehaviour:
   replyAudioSource: {fileID: 210105603}
   contextlog: {fileID: 24550957}
   suggestedResponseText: {fileID: 1153238617}
-  suggestedResponseCanvas: {fileID: 0}
+  suggestedResponseCanvas: {fileID: 617013987}
   happiness_score: 50
   negotiation_state: GREETING
-  suggestionDelay: 20
+  suggestionDelay: 10
 --- !u!1001 &242127849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6531,15 +6531,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9015032430957317065, guid: badcfe9bea4836d42835d256ac78e6a5, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.001
+      value: 0.0008
       objectReference: {fileID: 0}
     - target: {fileID: 9015032430957317065, guid: badcfe9bea4836d42835d256ac78e6a5, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.001
+      value: 0.0008
       objectReference: {fileID: 0}
     - target: {fileID: 9015032430957317065, guid: badcfe9bea4836d42835d256ac78e6a5, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.001
+      value: 0.0008
       objectReference: {fileID: 0}
     - target: {fileID: 9015032430957317065, guid: badcfe9bea4836d42835d256ac78e6a5, type: 3}
       propertyPath: m_LocalPosition.x
@@ -19144,7 +19144,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Translated Text
+  m_text: Subtitles
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}

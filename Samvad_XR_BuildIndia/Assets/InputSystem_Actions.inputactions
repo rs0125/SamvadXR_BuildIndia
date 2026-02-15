@@ -85,6 +85,24 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "ToggleRecording",
+                    "type": "Button",
+                    "id": "4dc440a3-aae8-4df0-921a-1bd5a93347bb",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "CancelRecording",
+                    "type": "Button",
+                    "id": "382ca4ce-1c61-4136-b1a2-f58e4dd6f847",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -470,6 +488,28 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2feb228f-d101-4093-b72b-6c4ce8706c37",
+                    "path": "*/{SecondaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";XR;Joystick;Touch;Gamepad;Keyboard&Mouse",
+                    "action": "ToggleRecording",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a9501e75-2559-4554-bfc5-91e46a3a4665",
+                    "path": "*/{PrimaryButton}",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": ";XR;Joystick;Touch;Gamepad;Keyboard&Mouse",
+                    "action": "CancelRecording",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

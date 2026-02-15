@@ -36,8 +36,12 @@ public class SimpleBackendConnector : MonoBehaviour
     [Tooltip("AudioSource to play the AI's spoken response")]
     public AudioSource replyAudioSource;
     public TextMeshProUGUI contextlog;
+    [Tooltip("UI text to display the AI reply in English")]
+    public TextMeshProUGUI replyEnglishText;
     [Tooltip("UI text to display the suggested user response from the backend")]
     public TextMeshProUGUI suggestedResponseText;
+    [Tooltip("UI text to display the suggested user response in English")]
+    public TextMeshProUGUI suggestedResponseEnglishText;
     [Tooltip("Canvas/GameObject that holds the suggested response UI – shown after 20s of inactivity")]
     public GameObject suggestedResponseCanvas;
     public int happiness_score = 50;
@@ -50,6 +54,7 @@ public class SimpleBackendConnector : MonoBehaviour
     private float lastApiCallTime;
     private bool suggestionShown = false;
     private string pendingSuggestedResponse;
+    private string pendingSuggestedResponseEnglish;
     
     void Start()
     {
@@ -69,6 +74,9 @@ public class SimpleBackendConnector : MonoBehaviour
 
             if (suggestedResponseText != null)
                 suggestedResponseText.text = pendingSuggestedResponse;
+
+            if (suggestedResponseEnglishText != null)
+                suggestedResponseEnglishText.text = pendingSuggestedResponseEnglish;
 
             suggestionShown = true;
         }
@@ -128,11 +136,13 @@ public class SimpleBackendConnector : MonoBehaviour
     [System.Serializable]
     public class BackendFullResponse
     {
-        public string reply;      // Whisper transcription / AI reply text
-        public string audioReply; // AI's spoken reply
+        public string reply;                          // AI reply text in target language
+        public string replyEnglish;                    // AI reply text in English
+        public string audioReply;                      // AI's spoken reply (base64)
         public string negotiation_state;
         public int happiness_score;
-        public string suggested_user_response;
+        public string suggested_user_response;         // Suggested response in target language
+        public string suggested_user_response_english; // Suggested response in English
     }
 
     private IEnumerator SendRequestCoroutine(AudioClip clip, TextMeshProUGUI transcriptionUI)
@@ -141,6 +151,7 @@ public class SimpleBackendConnector : MonoBehaviour
         lastApiCallTime = Time.time;
         suggestionShown = false;
         pendingSuggestedResponse = null;
+        pendingSuggestedResponseEnglish = null;
         if (suggestedResponseCanvas != null)
             suggestedResponseCanvas.SetActive(false);
 
@@ -185,13 +196,19 @@ public class SimpleBackendConnector : MonoBehaviour
 
                 if (transcriptionUI != null && !string.IsNullOrEmpty(response.reply))
                 {
-                    transcriptionUI.text = response.reply; // show Whisper response text
+                    transcriptionUI.text = response.reply; // show AI reply in target language
+                }
+
+                if (replyEnglishText != null && !string.IsNullOrEmpty(response.replyEnglish))
+                {
+                    replyEnglishText.text = response.replyEnglish; // show AI reply in English
                 }
 
                 if (!string.IsNullOrEmpty(response.suggested_user_response))
                 {
-                    // Store the suggestion but don't show yet – wait for inactivity timer
+                    // Store the suggestions but don't show yet – wait for inactivity timer
                     pendingSuggestedResponse = response.suggested_user_response;
+                    pendingSuggestedResponseEnglish = response.suggested_user_response_english;
                     lastApiCallTime = Time.time; // restart the 20s countdown from response arrival
                 }
 

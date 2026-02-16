@@ -145,9 +145,3 @@ Assets/
 
 
 
-## Team
-
-Built for **Build India** by Team Cheese Maggi.
-
----
-
